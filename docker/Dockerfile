@@ -4,4 +4,4 @@ WORKDIR /go/src/app/
 COPY ./goapp .
 
 RUN apk upgrade --update && \
-    apk --no-cache add git gcc musl-dev
+    apk --no-cache add bash git gcc musl-dev openssh
