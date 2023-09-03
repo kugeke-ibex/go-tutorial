@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+
+# Macのフォルダやファイルに関するmeta情報
+.DS_Store

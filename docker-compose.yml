@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  go:
+    container_name: go
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./goapp:/go/src/app
+    env_file:
+      - ./goapp/.go_env
+    environment:
+      - TZ=Asia/Tokyo
+    # コンテナの永続化
+    tty: true
