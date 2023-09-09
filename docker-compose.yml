@@ -6,11 +6,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-    volumes:
-      - ./goapp:/go/src/app
     env_file:
       - ./goapp/.go_env
     environment:
       - TZ=Asia/Tokyo
-    # コンテナの永続化
     tty: true
