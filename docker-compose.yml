@@ -6,8 +6,12 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-    env_file:
-      - ./goapp/.go_env
+    volumes:
+      - gohome:/home/devcontainer/go:cached
     environment:
       - TZ=Asia/Tokyo
     tty: true
+    user: devcontainer
+
+volumes:
+  gohome:

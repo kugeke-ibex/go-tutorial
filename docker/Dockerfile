@@ -1,11 +1,32 @@
 FROM golang:1.21-rc-alpine
 
+ARG username=devcontainer
+ARG useruid=1000
+ARG usergid=${useruid}
+
 WORKDIR /go/src/Tutorial/
 
-RUN apk upgrade --update && \
-    apk --no-cache add bash git gcc musl-dev openssh && \
-    go install golang.org/x/tools/gopls@latest && \
-    go install github.com/go-delve/delve/cmd/dlv@latest && \
-    go install github.com/ramya-rao-a/go-outline@latest && \
-    go install github.com/fatih/gomodifytags@latest && \
-    go install github.com/josharian/impl@latest
+RUN \
+    # apk
+    apk upgrade --update && \
+    apk --no-cache add \
+    bash \
+    git \
+    gcc \
+    musl-dev \
+    openssh \
+    zip \
+    unzip \
+    wget \
+    sudo \
+    && \
+    
+    # create user
+    addgroup -g ${usergid} -S ${username} && \
+    adduser -s /bin/bash -u ${useruid} -S ${username} -G ${username} && \
+    echo ${username} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${username} && \
+    chmod 0440 /etc/sudoers.d/${username}
+
+ENV GOPATH=/home/${username}/go
+ENV GO111MODULE on
+USER ${username}
