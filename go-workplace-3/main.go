@@ -26,7 +26,7 @@ func main() {
         Net:    "tcp",
         Addr:   "db:3306",
         DBName: os.Getenv("MYSQL_DATABASE"),
-		AllowNativePasswords: true,
+	    AllowNativePasswords: true,
     }
     // Get a database handle.
     var err error
