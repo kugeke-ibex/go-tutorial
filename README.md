@@ -1,2 +1,2 @@
 # go-tutorial
-Go Tutorial
+[Go Tutorial](https://go.dev/doc/tutorial/)
