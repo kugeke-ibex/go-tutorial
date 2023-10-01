@@ -7,7 +7,10 @@ services:
       context: .
       dockerfile: ./docker/app/Dockerfile
     volumes:
-      - gohome:/home/devcontainer/go:cached
+      - type: volume
+        source: gohome
+        target: /home/devcontainer/go
+        consistency: cached
     environment:
       - TZ=Asia/Tokyo
     env_file:
@@ -28,9 +31,15 @@ services:
     env_file:
       - ./go-workplace-3/.env
     volumes:
-      - mysql_data:/var/lib/mysql
-      - ./go-workplace-3/conf/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./go-workplace-3/sql:/sql
+      - type: volume
+        source: mysql_data
+        target: /var/lib/mysql
+      - type: bind
+        source: "./go-workplace-3/conf/my.cnf"
+        target: "/etc/mysql/conf.d/my.cnf"
+      - type: bind
+        source: "./go-workplace-3/sql"
+        target: "/sql"
     ports:
       - 13306:3306
     networks:

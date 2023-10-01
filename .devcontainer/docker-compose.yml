@@ -13,7 +13,10 @@ services:
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
-      - ../Tutorial:/go/src/Tutorial:cached
+      - type: bind
+        source: "../Tutorial"
+        target: "/go/src/Tutorial"
+        consistency: cached
 
     # Uncomment the next four lines if you will use a ptrace-based debugger like C++, Go, and Rust.
     # cap_add:
