@@ -29,4 +29,7 @@ RUN \
 
 ENV GOPATH=/home/${username}/go
 ENV GO111MODULE on
+ENV PATH=${PATH}:/usr/local/go/bin
+ENV PATH=${PATH}:/go/bin
+ENV PATH=${PATH}:${GOPATH}/bin
 USER ${username}
